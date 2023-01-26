@@ -1,0 +1,33 @@
+{
+  "name": "address_set",
+  "version": "0.0.1",
+  "description": "Implementation of a dynamic address set in solidity",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib",
+    "test": "test"
+  },
+  "scripts": {
+    "build": "forge build --sizes",
+    "prettier:check": "prettier --check \"(contracts|test)/*.sol\"",
+    "hint": "solhint contracts/**/*.sol test/**/*.sol",
+    "test": "forge test -vvv",
+    "clean": "forge clean"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jac18281828/address_set.git"
+  },
+  "author": "John Cairns",
+  "license": "BSD-3-Clause",
+  "bugs": {
+    "url": "https://github.com/jac18281828/address_set/issues"
+  },
+  "devDependencies": {
+    "prettier": "2.7.1",
+    "prettier-plugin-solidity": "1.0.0-beta.24",
+    "solhint": "3.3.7",
+    "solhint-plugin-prettier": "0.0.5"
+  },
+  "homepage": "https://github.com/jac18281828/address_set#readme"
+}
