@@ -1,6 +1,6 @@
 FROM ghcr.io/collectivexyz/foundry:latest
 
-ARG PROJECT=ethproxydelegate
+ARG PROJECT=address_set
 WORKDIR /workspaces/${PROJECT}
 RUN chown -R mr.mr .
 COPY --chown=mr:mr . .
