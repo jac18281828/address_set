@@ -4,7 +4,7 @@ pragma solidity ^0.8.15;
 contract AddressSet {
     error IndexInvalid(uint256 index);
 
-    event AddressAdded(address elment);
+    event AddressAdded(address element);
 
     uint256 private _elementCount;
 
