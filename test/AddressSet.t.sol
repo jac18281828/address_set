@@ -5,7 +5,7 @@ import "forge-std/Test.sol";
 
 import "../contracts/AddressSet.sol";
 
-contract CounterTest is Test {
+contract AddressTest is Test {
     AddressSet private _set;
 
     function setUp() public {
