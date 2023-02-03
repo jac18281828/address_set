@@ -3,8 +3,10 @@ pragma solidity ^0.8.15;
 
 contract AddressSet {
     error IndexInvalid(uint256 index);
+    error DuplicateAddress(address _address);
 
     event AddressAdded(address element);
+    event AddressRemoved(address element);
 
     uint256 private _elementCount;
 
@@ -24,18 +26,29 @@ contract AddressSet {
     function add(address _element) external returns (uint256) {
         uint256 elementIndex = ++_elementCount;
         _elementMap[elementIndex] = _element;
+        if (_elementPresent[_element] > 0) revert DuplicateAddress(_element);
         _elementPresent[_element] = elementIndex;
         emit AddressAdded(_element);
         return elementIndex;
     }
 
-    function erase(address _element) external returns (bool) {
+    function erase(uint256 _index) external returns (bool) {
+        address _element = _elementMap[_index];
+        return erase(_element);
+    }
+
+    function erase(address _element) public returns (bool) {
         uint256 elementIndex = _elementPresent[_element];
         if (elementIndex > 0) {
-            _elementMap[elementIndex] = address(0x0);
+            address _lastElement = _elementMap[_elementCount];
+            _elementMap[elementIndex] = _lastElement;
+            _elementPresent[_lastElement] = elementIndex;
+            _elementMap[_elementCount] = address(0x0);
             _elementPresent[_element] = 0;
-            delete _elementMap[elementIndex];
+            delete _elementMap[_elementCount];
             delete _elementPresent[_element];
+            _elementCount--;
+            emit AddressRemoved(_element);
             return true;
         }
         return false;
@@ -49,7 +62,11 @@ contract AddressSet {
         return _elementMap[index];
     }
 
-    function contains(address element) external view returns (bool) {
-        return _elementPresent[element] > 0;
+    function contains(address _element) external view returns (bool) {
+        return find(_element) > 0;
+    }
+
+    function find(address _element) public view returns (uint256) {
+        return _elementPresent[_element];
     }
 }
