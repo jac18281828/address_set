@@ -14,8 +14,12 @@
 				"JuanBlanco.solidity"
 			]
 		}
+	},
+	"containerEnv": {
+		"DEVNET_RPC_URL": "https://eth-goerli.g.alchemy.com/v2/dMCHPM3DbRdKcvpEPa0AAAASMuwxOd-I",
+		"ETH_DEV_PRIVATE": "92c8fa56a0a2051c9e809cab1889f761237e18b1b55abe320b2e130798e29c11",
+		"ETHERSCAN_API_KEY": "IVIS1ZK3YHPY28A46FIT9MSQQ77548C59H"
 	}
-
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
