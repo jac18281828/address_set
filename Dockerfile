@@ -1,12 +1,14 @@
-FROM ghcr.io/xmtp/foundry:latest
+FROM ghcr.io/collectivexyz/foundry:latest
 
 ARG PROJECT=address_set
 WORKDIR /workspaces/${PROJECT}
-RUN chown -R xmtp.xmtp .
-COPY --chown=xmtp:xmtp . .
-ENV USER=xmtp
-USER xmtp
-ENV PATH=${PATH}:~/.cargo/bin
+RUN chown -R foundry:foundry .
+COPY --chown=foundry:foundry . .
+ENV USER=foundry
+USER foundry
+ENV PATH=${PATH}:~/.cargo/bin:/usr/local/go/bin
+
+RUN yamlfmt -lint .github/workflows/*.yml
 
 RUN yarn install --dev
 RUN yarn prettier:check
